@@ -1,0 +1,52 @@
+<project name="converter build" basedir=".">
+	<!-- ========== Initialize Properties =================================== -->
+	<!-- set global properties for build -->
+	<property name="basedir" value="." />
+	<property name="lib" value="${basedir}/lib" />
+	<property name="src" value="${basedir}/src" />
+	<property name="bin" value="${basedir}/bin" />
+	
+	<!-- ====== Set the classpath ====  -->
+	<path id="classpath">
+		<pathelement location="${bin}" />
+		<fileset dir="${lib}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<!-- Delete directories  -->
+	<target name="delete-dir">
+		<delete dir="${bin}" />
+		<delete dir="${report-dir}" />
+	</target>
+	
+	<!-- Creating directories -->
+	<target name="create" depends="delete-dir">
+		<mkdir dir="${bin}" />
+		<mkdir dir="${report-dir}" />
+	</target>
+	
+	<!-- Compile the java code from ${src} into ${bin} -->
+	<target name="compile" depends="create">
+		<javac srcdir="${test}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+		<echo> /* Compiled Directory Classes */ </echo>
+	</target>
+	
+	<target name="compile-jar" depends="create">
+	    <javac srcdir="${src}" includeAntRuntime="No" destdir="${bin}"/>
+	</target>
+	
+	<target name="jar" depends="compile-jar">
+		<jar destfile="${lib}/printVertical.jar" basedir="${bin}">
+		<manifest>
+			<attribute name="Main-Class" value="converter.PrintVertical"/>
+		</manifest>
+		</jar>
+	</target>
+	
+	<target name="printVertical" depends="jar">
+		<java jar="${lib}/printVertical.jar" fork="true">
+		</java>
+	</target>
+	
+</project>
