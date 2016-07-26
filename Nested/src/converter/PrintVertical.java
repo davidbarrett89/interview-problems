@@ -116,7 +116,7 @@ public class PrintVertical {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the string to convert(without quotes): ");
+		System.out.println("Enter the string to convert(without quotes): ");
 		String input = sc.nextLine();
 		System.out.println("Sort the result(yes, no): ");
 		String sorted = sc.nextLine();

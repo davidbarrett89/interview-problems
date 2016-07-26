@@ -27,11 +27,6 @@
 	</target>
 	
 	<!-- Compile the java code from ${src} into ${bin} -->
-	<target name="compile" depends="create">
-		<javac srcdir="${test}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
-		<echo> /* Compiled Directory Classes */ </echo>
-	</target>
-	
 	<target name="compile-jar" depends="create">
 	    <javac srcdir="${src}" includeAntRuntime="No" destdir="${bin}"/>
 	</target>
